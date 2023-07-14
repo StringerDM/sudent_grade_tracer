@@ -27,10 +27,6 @@ public class StudentDataSource {
         return students.remove(student);
     }
 
-    public void update() {
-
-    }
-
     public Student get(String name) {
       return students.stream().filter(s -> s.getName().equals(name)).findFirst().orElse(null);
     }
