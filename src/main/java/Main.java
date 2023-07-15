@@ -18,12 +18,13 @@ public class Main {
 
         menu.addItem("1", new Item("Добавьте нового ученика", menu::add));
         menu.addItem("2", new Item("Удалите ученика", menu::remove));
-        menu.addItem("3", new Item("Добавить оценку ученику", menu::addGrade));
-        menu.addItem("4", new Item("Просмотр оценок всех учащихся", menu::printAll));
-        menu.addItem("5", new Item("Просмотр оценок конкретного учащегося", menu::printStudent));
-        menu.addItem("6", new Item("Сохранить в файл", fileService::save));
-        menu.addItem("7", new Item("Загрузить из файла", fileService::load));
-        menu.addItem("8", new Item("Выход", menu::exit));
+        menu.addItem("3", new Item("Добавить оценку ученику", menu::inputGrade));
+        menu.addItem("4", new Item("Обновить оценку ученику", menu::updateGrade));
+        menu.addItem("5", new Item("Просмотр оценок всех учащихся", menu::printAll));
+        menu.addItem("6", new Item("Просмотр оценок конкретного учащегося", menu::printStudent));
+        menu.addItem("7", new Item("Сохранить в файл", fileService::save));
+        menu.addItem("8", new Item("Загрузить из файла", fileService::load));
+        menu.addItem("9", new Item("Выход", menu::exit));
 
         init(fileService);
 
