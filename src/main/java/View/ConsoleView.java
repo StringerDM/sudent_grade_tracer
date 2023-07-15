@@ -24,8 +24,7 @@ public class ConsoleView {
             String s = entry.getKey() + ". " + entry.getValue().getName();
             System.out.println(s);
         }
-        System.out.print("Выберете пункт меню: ");
-        String menuItem = scanner.nextLine();
+        String menuItem = inputString("Выберете пункт меню: ");
         Item item = items.get(menuItem);
         if (item != null) {
             item.action.execute();
@@ -39,22 +38,19 @@ public class ConsoleView {
     }
 
     public void add() {
-        System.out.print("Введите имя ученика: ");
-        String name = scanner.nextLine();
+        String name = inputString("Введите имя ученика: ");
         if (!studentService.save(name)) {
             add();
         }
     }
 
     public void remove() {
-        System.out.print("Введите имя ученика: ");
-        String name = scanner.nextLine();
+        String name = inputString("Введите имя ученика: ");
         studentService.remove(name);
     }
 
-    public void addGrade() {
-        System.out.print("Введите имя ученика: ");
-        String name = scanner.nextLine();
+    public void inputGrade() {
+        String name = inputString("Введите имя ученика: ");
         if (studentService.get(name) != null) {
             int grade = getIntGrade();
             studentService.addGrade(name, grade);
@@ -62,8 +58,7 @@ public class ConsoleView {
     }
 
     private int getIntGrade() {
-        System.out.print("Введите новую оценку: ");
-        String grade = scanner.nextLine();
+        String grade = inputString("Введите новую оценку: ");
         try {
             return Integer.parseInt(grade);
         } catch (Exception e) {
@@ -80,13 +75,18 @@ public class ConsoleView {
     }
 
     public void printStudent() {
-        System.out.print("Введите имя ученика: ");
-        String name = scanner.nextLine();
+        String name = inputString("Введите имя ученика: ");
         Student student = studentService.get(name);
         if (student != null) {
             System.out.println(student.getName() + " " + student.getGrades());
         }
     }
+
+    private String inputString(String s) {
+        System.out.print(s);
+        return scanner.nextLine();
+    }
+
 
     public void exit() {
         isExit = true;
@@ -95,4 +95,9 @@ public class ConsoleView {
     public boolean isExit() {
         return isExit;
     }
+
+    public void updateGrade() {
+    }
+
+
 }
