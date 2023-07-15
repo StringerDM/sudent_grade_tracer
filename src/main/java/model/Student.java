@@ -33,4 +33,8 @@ public class Student implements Comparable<Student> {
     public void addGrade(Integer grade) {
         grades.add(grade);
     }
+
+    public void updateGrade(int index, int grade) {
+        grades.set(index, grade);
+    }
 }

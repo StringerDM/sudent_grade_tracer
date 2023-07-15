@@ -39,4 +39,9 @@ public class StudentDataSource {
         Student student = get(name);
         student.addGrade(grade);
     }
+
+    public void updateGrade(String name, int index, int grade) {
+        Student student = get(name);
+        student.updateGrade(index, grade);
+    }
 }

@@ -3,7 +3,10 @@ package View;
 import Service.StudentService;
 import model.Student;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class ConsoleView {
 
@@ -52,19 +55,18 @@ public class ConsoleView {
     public void inputGrade() {
         String name = inputString("Введите имя ученика: ");
         if (studentService.get(name) != null) {
-            int grade = getIntGrade();
+            int grade = inputInt("Введите новую оценку: ");
             studentService.addGrade(name, grade);
         }
     }
 
-    private int getIntGrade() {
-        String grade = inputString("Введите новую оценку: ");
-        try {
-            return Integer.parseInt(grade);
-        } catch (Exception e) {
-            System.out.println("Вы ввели не число");
+    public void updateGrade() {
+        String name = inputString("Введите имя ученика: ");
+        if (studentService.get(name) != null) {
+            int index = inputInt("Введите индекс оценки: ");
+            int grade = inputInt("Введите новую оценку: ");
+            studentService.updateGrade(name, index, grade);
         }
-        return getIntGrade();
     }
 
     public void printAll() {
@@ -82,11 +84,20 @@ public class ConsoleView {
         }
     }
 
-    private String inputString(String s) {
-        System.out.print(s);
-        return scanner.nextLine();
+    private int inputInt(String message) {
+        String grade = inputString(message);
+        try {
+            return Integer.parseInt(grade);
+        } catch (Exception e) {
+            System.out.println("Вы ввели не число");
+        }
+        return inputInt(message);
     }
 
+    private String inputString(String message) {
+        System.out.print(message);
+        return scanner.nextLine();
+    }
 
     public void exit() {
         isExit = true;
@@ -95,9 +106,5 @@ public class ConsoleView {
     public boolean isExit() {
         return isExit;
     }
-
-    public void updateGrade() {
-    }
-
 
 }

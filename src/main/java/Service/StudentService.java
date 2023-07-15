@@ -42,9 +42,12 @@ public class StudentService {
         dataSource.addGrade(name, index);
     }
 
+    public void updateGrade(String name, int index, int grade) {
+        dataSource.updateGrade(name, index, grade);
+    }
+
     public List<Student> getAll() {
         return dataSource.getAll();
     }
-
 
 }
